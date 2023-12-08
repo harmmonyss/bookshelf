@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный Обмен</title>
+    <style>
+        /* Ваш стиль CSS здесь */
+    </style>
+</head>
+<body>
+
+    <h1>Книжный Обмен</h1>
+
+    <div id="bookForm">
+        <input type="text" id="bookTitle" placeholder="Название книги">
+        <input type="text" id="bookAuthor" placeholder="Автор">
+        <button onclick="addBook()">Добавить книгу</button>
+    </div>
+
+    <div id="bookList"></div>
+
+    <script>
+        // Симуляция базы данных для хранения книг
+        let books = [];
+
+        function addBook() {
+            const title = document.getElementById('bookTitle').value;
+            const author = document.getElementById('bookAuthor').value;
+
+            if (title && author) {
+                const book = { title, author };
+                books.push(book);
+                updateBookList();
+                clearInputFields();
+            }
+        }
+
+        function updateBookList() {
+            const bookList = document.getElementById('bookList');
+            bookList.innerHTML = ''; // Очищаем текущий список книг
+
+            books.forEach(book => {
+                const bookElement = document.createElement('div');
+                bookElement.className = 'book';
+                bookElement.innerText = `${book.title} - ${book.author}`;
+                bookList.appendChild(bookElement);
+            });
+        }
+
+        function clearInputFields() {
+            document.getElementById('bookTitle').value = '';
+            document.getElementById('bookAuthor').value = '';
+        }
+    </script>
+
+</body>
+</html>
